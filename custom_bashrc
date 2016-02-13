@@ -1,0 +1,162 @@
+##############################################################################################
+# PERSONAL CONFIG
+##############################################################################################
+# bash /home/richard/Programming/Linux/Commands/tv_resolution_command.txt
+if [[ "$(ps -ef | grep pydoc)" == "" ]]; then
+    pydoc -p 1234 >> /dev/null 2>&1 &
+fi
+
+pkill espeak
+
+##############################################################################################
+# Custom Vars
+##############################################################################################
+
+export EDITOR=vim
+export LOG_DIR=/home/richard/UNB/Academic/Year5/Semester1/SWE4040/Logs
+export IP=$(ip addr | grep -w inet | tail -n 1 | awk '{print $2}')
+
+# Shell only exists after the 5th consecutive Ctrl-D
+export IGNOREEOF=5
+
+#Colours
+reset='\[\e[00m\]'
+bold='\[\e[01m\]'
+red='\[\e[31m\]'
+green='\[\e[32m\]'
+orange='\[\e[33m\]'
+blue='\[\e[34m\]'
+purple='\[\e[35m\]'
+cyan='\[\e[36m\]'
+gray='\[\e[37m\]'
+bright='\[\e[39m\]'
+
+export TERM=xterm-256color
+
+# Bash Scripts
+export PYTHONSTARTUP=~/.pythonrc.py
+
+# Basic commands
+alias chk='ls *'
+alias la='ls -la'
+# alias o='xdg-open'
+alias s='source ~/.bashrc'
+alias tint='pkill tint2; tint2 -c ~/.tint2rc >> /dev/null 2>&1 &'
+alias vi='vim'
+alias x='exit'
+
+# Info
+alias ram='vmstat'
+alias wifiscan='sudo iwlist wlan0 scanning | egrep "Cell |Encryption|Quality|Last beacon|ESSID"'
+alias wifi='sudo wavemon'
+
+# Converters
+alias convert='pacpl'
+
+# Upgrades
+alias cache='apt-cache search'
+alias get='yes y | sudo apt-get install'
+alias installed='dpkg --get-selections'
+
+# Directory stacking
+alias p='popd 1>/dev/null'
+alias cd='pushd . 1>/dev/null; cd'
+
+# Pointless yet entertaining crap
+alias pacman='~/Programming/Python/ncurses/./cursesPacman.py'
+alias pman='~/Programming/Python/ncurses/pacman/./Start.py'
+alias starwars='telnet towel.blinkenlights.nl'
+
+# Mounting
+alias xenia='sudo mount -t cifs -o username=Xenia //192.168.30.250/Xenia /home/richard/Media/NetworkDrive'
+
+################################################################################
+# Version Control Prompt
+################################################################################
+
+source ~/.vcPrompt.sh
+
+##################################################
+# Common history
+##################################################
+
+# avoid duplicates
+#export HISTCONTROL=ignoredups:erasedups
+
+# append history entries
+#shopt -s histappend
+
+# After each command, save and reload history
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+#-------------------------------------------------
+# End Common history
+#-------------------------------------------------
+
+
+#proper dual monitors
+#gsettings set org.gnome.shell.overrides workspaces-only-on-primary false
+
+function showFileColors() {
+    eval $(echo "no:global default;fi:normal file;di:directory;ln:symbolic link;pi:named pipe;so:socket;do:door;bd:block device;cd:character device;or:orphan symlink;mi:missing file;su:set uid;sg:set gid;tw:sticky other writable;ow:other writable;st:sticky;ex:executable;"|sed -e 's/:/="/g; s/\;/"\n/g')
+    {
+      IFS=:
+      for i in $LS_COLORS
+      do
+        echo -e "\e[${i#*=}m$( x=${i%=*}; [ "${!x}" ] && echo "${!x}" || echo "$x" )\e[m"
+      done
+    }
+}
+
+function showXtermColors() {
+    for i in {0..256}; do
+      tput setaf $i;
+      echo $i;
+    done
+}
+
+function removeWhitespace() {
+    IFS=$'\n'
+
+    change() {
+        nf=$(echo $1 | sed 's/ /_/g');
+        if [[ "$1" != "$nf" ]]; then
+            mv $1 $nf;
+        fi
+    }
+
+    for x in $@; do
+        if [[ -d $x ]]; then
+            cd $x;
+            for y in $(ls); do
+                if [[ -d $y ]]; then
+                    /home/richard/Programming/Bash/rename.sh $y;
+                else
+                    change $y;
+                fi
+            done
+            cd ..
+        fi
+        change $x;
+    done
+}
+
+function codec() {
+    ffmpeg -i "$1" 2>&1 | grep Stream | grep -Eo '(Audio|Video)\: [^ ,]+'
+}
+
+function lcomp() {
+    pdflatex ${1}.tex && bibtex ${1}.aux && pdflatex ${1}.tex && pdflatex ${1}.tex
+}
+
+function o() {
+    for f in ${@}; do
+        xdg-open ${f} >> /dev/null 2>&1
+    done
+}
+
+export -f showFileColors
+export -f showXtermColors
+export -f codec
+export -f lcomp
+export -f o
