@@ -31,43 +31,15 @@ read
 
 sudo visudo -f /etc/sudoers
 
-echo "Install scientific computing python libraries? (Numpy, SciPy, Matplotlib) for Python 2.x and 3.x? ([A]ll/Python [2] only/Python [3] only/[S]electively install libraries/Install [N]o libraries) (A/2/3/S/N)"
+pip2 install -r py2_requirements.txt
+pip3 install -r py3_requirements.txt
 
-read answ
+cp custom_bashrc ~
+echo "source ~/.custom_bashrc" >> ~/.bashrc
 
-if [[ "$answ" != "N" ]]; then
-    if [[ "$answ" == "A" ]] || [[ "$answ" == "2" ]]; then
-        echo -n "sudo pip install numpy... "
-        sudo pip install numpy
-
-        echo -en "Done\nsudo apt-get install python-scipy... "
-        sudo apt-get install python-scipy
-
-        echo -en "Done\nsudo apt-get install python-matplotlib... "
-        sudo apt-get install python-matplotlib
-
-        sudo pip install pandas
-        sudo pip install nltk
-        sudo pip install scikit-learn
-
-        echo "Done"
-    fi
-
-    if [[ "$answ" == "A" ]] || [[ "$answ" == "3" ]]; then
-        echo -n "sudo pip install numpy... "
-        sudo pip3 install numpy
-
-        echo -en "Done\nsudo apt-get install python-scipy... "
-        sudo apt-get install python3-scipy
-
-        echo -en "Done\nsudo apt-get install python-matplotlib... "
-        sudo apt-get install python3-matplotlib
-
-        sudo pip3 install pandas
-        sudo pip3 install nltk
-        sudo pip3 install scikit-learn
-        sudo pip3 install theano
-
-        echo "Done"
-    fi
-fi
+cp tint2rc ~/.tint2rc
+cp tmux.conf ~/.tmux.conf
+cp vcPrompt.sh ~/.vcPrompt.sh
+cp vc_short_diff.py ~/.vc_short_diff.py
+cp vimrc ~/.vimrc
+cp vim ~/.vim
