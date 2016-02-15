@@ -37,9 +37,6 @@ pip3 install -r py3_requirements.txt
 cp custom_bashrc ~
 echo "source ~/.custom_bashrc" >> ~/.bashrc
 
-cp tint2rc ~/.tint2rc
-cp tmux.conf ~/.tmux.conf
-cp vcPrompt.sh ~/.vcPrompt.sh
-cp vc_short_diff.py ~/.vc_short_diff.py
-cp vimrc ~/.vimrc
-cp vim ~/.vim
+for f in configfile.*; do
+    cp ${f} ${f##configfile}
+done
