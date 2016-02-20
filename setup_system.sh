@@ -1,27 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install \
-    git \
-    guake \
-    tmux \
-    vim \
-    htop \
-    tint2 \
-    python-dev \
-    python-pip \
-    python3-dev \
-    python3-pip \
-    keepassx \
-    texmaker \
-    openssh-server \
-    xdotool \
-    apache2 \
-    steam \
-    vlc \
-    clementine \
-    gtk-redshift \
-    redshift \
-    lynx
+sudo apt-get install $(cat system_requirements)
 
 sudo update-alternatives --config editor
 
