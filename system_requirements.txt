@@ -19,3 +19,4 @@ tmux
 vim
 vlc
 xdotool
+silversearcher-ag				install
