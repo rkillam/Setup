@@ -38,5 +38,9 @@ cp custom_bashrc ~
 echo "source ~/.custom_bashrc" >> ~/.bashrc
 
 for f in configfile.*; do
-    cp ${f} ${f##configfile}
+    cp ${f} ~/${f##configfile}
+done
+
+for f in cmdfile.*; do
+    sudo cp ${f} /usr/local/bin/${f##cmdfile.}
 done
