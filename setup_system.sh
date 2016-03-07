@@ -13,7 +13,7 @@ sudo visudo -f /etc/sudoers
 pip2 install -r py2_requirements.txt
 pip3 install -r py3_requirements.txt
 
-ln -f custom_bashrc ~
+ln -f custom_bashrc ~/.custom_bashrc
 echo "source ~/.custom_bashrc" >> ~/.bashrc
 
 for f in configfile.*; do
