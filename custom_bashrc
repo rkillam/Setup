@@ -119,7 +119,7 @@ function removeWhitespace() {
     IFS=$'\n'
 
     change() {
-        nf=$(echo $1 | sed 's/ /_/g');
+        nf=$(echo $1 | tr -s ' ' '_');
         if [[ "$1" != "$nf" ]]; then
             mv $1 $nf;
         fi

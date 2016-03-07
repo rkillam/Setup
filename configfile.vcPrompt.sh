@@ -26,7 +26,7 @@ bg_white='\[\e[47m\]'      # White
 
 # Function to only show the last 3 folders in the pwd path
 function short_pwd {
-    python -c "print('/'.join('$(pwd)'.split('/')[-2:]))"
+    python -c "print('/'.join('$(pwd)'.split('/')[-3:]))"
 }
 
 export VC_TYPE="GIT"
@@ -125,14 +125,11 @@ function vcPrompt {
         fi
     fi
 
-    # Base PS1
-    coloured_dir="$reset$bold$purple$USER[$green\t$purple]:${bold}${blue}$(short_pwd)"
-
     coloured_branch="$reset${bold}${green}$branch"
     coloured_edits="$reset$bold$orange$edits"
     coloured_ahead_behind="$reset$bold$red$ahead_behind"
 
-    newPS1="$coloured_dir $coloured_branch$coloured_edits$coloured_ahead_behind->$bright "
+    newPS1="$coloured_branch$coloured_edits$coloured_ahead_behind"
 
     IFS=$OIFS
 
@@ -146,7 +143,10 @@ function configPrompt {
         virt_env=""
     fi
 
-    export PS1="${virt_env}${VC_COLOUR}${VC_TYPE}:$reset $(vcPrompt) "
+    # Base PS1
+    coloured_dir="$reset$bold$purple$USER@$(hostname)[$green\t$purple]:${bold}${blue}$(short_pwd)"
+
+    export PS1="${virt_env}${VC_COLOUR}${VC_TYPE}:$reset${coloured_dir} $(vcPrompt)\n$bright> "
 }
 
 export PROMPT_COMMAND="configPrompt"
