@@ -21,7 +21,7 @@ for f in configfile.*; do
 done
 
 for d in configdir.*; do
-    ln -sf ${d} ~/${d##configdir}
+    ln -sf $(readlink -f ${d}) ~/${d##configdir}
 done
 
 for f in cmdfile.*; do

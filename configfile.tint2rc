@@ -94,7 +94,7 @@ clock_font_color = #FFFFFF 74
 clock_padding = 1 0
 clock_background_id = 0
 clock_rclick_command = gworldclock
- 
+
 # Tooltips
 tooltip_padding = 2 2
 tooltip_show_timeout = 0.7
@@ -122,3 +122,5 @@ battery_background_id = 0
 
 # End of config
 
+
+asdf
