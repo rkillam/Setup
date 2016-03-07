@@ -20,6 +20,10 @@ for f in configfile.*; do
     ln -f ${f} ~/${f##configfile}
 done
 
+for d in configdir.*; do
+    ln -sf ${d} ~/${d##configdir}
+done
+
 for f in cmdfile.*; do
     sudo ln -f ${f} /usr/local/bin/${f##cmdfile.}
 done
