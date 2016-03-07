@@ -13,13 +13,13 @@ sudo visudo -f /etc/sudoers
 pip2 install -r py2_requirements.txt
 pip3 install -r py3_requirements.txt
 
-cp custom_bashrc ~
+ln -f custom_bashrc ~
 echo "source ~/.custom_bashrc" >> ~/.bashrc
 
 for f in configfile.*; do
-    cp ${f} ~/${f##configfile}
+    ln -f ${f} ~/${f##configfile}
 done
 
 for f in cmdfile.*; do
-    sudo cp ${f} /usr/local/bin/${f##cmdfile.}
+    sudo ln -f ${f} /usr/local/bin/${f##cmdfile.}
 done
