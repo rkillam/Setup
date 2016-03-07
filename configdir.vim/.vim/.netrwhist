@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/richard/UNB/Co-op/Jobs/Latex/ResearchPositions'
-let g:netrw_dirhist_2='/home/richard/UNB/Co-op/Jobs/Latex'
-let g:netrw_dirhist_3='/home/richard/UNB/Co-op/Jobs'
-let g:netrw_dirhist_4='/home/richard/UNB/Co-op/Jobs/Latex/ResearchPositions'
