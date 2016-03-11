@@ -34,7 +34,7 @@ hi Float         ctermfg=1    ctermbg=NONE  cterm=NONE
 hi Function      ctermfg=155  ctermbg=NONE  cterm=NONE
 hi Identifier    ctermfg=2    ctermbg=NONE  cterm=underline
 hi Include       ctermfg=118  ctermbg=NONE  cterm=NONE
-hi Number        ctermfg=1    ctermbg=NONE  cterm=NONE
+hi Number        ctermfg=226    ctermbg=NONE  cterm=NONE
 hi Operator      ctermfg=123  ctermbg=NONE  cterm=NONE
 hi Operators     ctermfg=93   ctermbg=NONE  cterm=NONE
 hi Optimize      ctermfg=253  ctermbg=NONE  cterm=bold
