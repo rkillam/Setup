@@ -160,3 +160,5 @@ export -f showXtermColors
 export -f codec
 export -f lcomp
 export -f o
+
+workon py3

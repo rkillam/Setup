@@ -20,5 +20,6 @@ texmaker
 tint2
 tmux
 vim
+virtualenvwrapper
 vlc
 xdotool

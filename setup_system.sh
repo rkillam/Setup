@@ -10,8 +10,8 @@ read
 
 sudo visudo -f /etc/sudoers
 
-pip2 install -r py2_requirements.txt
-pip3 install -r py3_requirements.txt
+mkvirtualenv -p $(which python2) -r py2_requirements.txt py2
+mkvirtualenv -p $(which python3) -r py3_requirements.txt py3
 
 ln -f custom_bashrc ~/.custom_bashrc
 echo "source ~/.custom_bashrc" >> ~/.bashrc
