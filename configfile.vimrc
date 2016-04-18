@@ -31,6 +31,9 @@ endfunction
 autocmd BufNewFile,BufRead Makefile set noexpandtab
 "autocmd BufNewFile,BufRead *.csv call CSV(25)
 
+"autocmd BufNewFile,BufRead *.tex let g:indentLine_loaded = 1
+"let g:indentLine_loaded = 1
+
 " ################################################
 " UTF-8 support
 " ################################################
