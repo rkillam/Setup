@@ -111,6 +111,11 @@ function vcPrompt {
                 edits="($edits)"
             fi
 
+            NUM_STASHES=$(git stash list | wc -l)
+            if [ ${NUM_STASHES} -ne 0 ]; then
+                num_stashes=" ${NUM_STASHES}"
+            fi
+
             AHEAD=$(git rev-list @{u}..HEAD 2>/dev/null | wc -l)
             BEHIND=$(git rev-list HEAD..@{u} 2>/dev/null | wc -l)
 
@@ -127,9 +132,10 @@ function vcPrompt {
 
     coloured_branch="$reset${bold}${green}$branch"
     coloured_edits="$reset$bold$orange$edits"
+    coloured_stashes="$reset$bold$cyan$num_stashes"
     coloured_ahead_behind="$reset$bold$red$ahead_behind"
 
-    newPS1="$coloured_branch$coloured_edits$coloured_ahead_behind"
+    newPS1="${coloured_branch}${coloured_edits}${coloured_stashes}${coloured_ahead_behind}"
 
     IFS=$OIFS
 
